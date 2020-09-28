@@ -47,30 +47,6 @@ jQuery(() => {
 		socket.disconnect();
 		var oldurl = window.location.href;
 		window.location.replace(oldurl);
-		$('#chatapp').empty();
-		$('#chatapp').append(
-			`<div class="container mx-auto flex w-2/3 justify-between bg-purple-600 h-16 item-center px-1 py-1 mt-16 rounded-t-lg">
-				<center align="left" class="flex">
-					<h1 class="text-2xl font-bold ml-10 mt-2 text-white"><i class="fas fa-smile"></i></h1>
-					<h1 class="header text-2xl font-bold ml-4 mt-2 text-white">ChatApp</h1>
-				</center>
-				<center align="right">
-					<button id="LeaveBtn" class="text-xl p-2 mr-10 rounded bg-green-300 text-white hover:text-white hover:bg-red-600 font-bold ml-4 mt-2 text-white" style="outline: none;">Leave</button>
-				</center>
-			</div>
-
-			<div class="headbox container flex mx-auto w-2/3 item-center rounded-b-lg justify-between">
-				
-				<div class="magArea container mx-auto bg-gray-200 h-64 p-4 overflow-y-auto"></div>
-			</div>
-
-			<div class="container mx-auto flex w-2/3 bg-purple-600 h-16 item-center p-4 rounded-b-lg">
-				<input placeholder="Write a message...." id="senddata" class="pb-2 pl-2 mr-2 h-8 w-full mx-auto text-purple-800 outline-none bg-gray-300 text-black font-bold py-2 px-4 border-b-4 border-blue-700" />
-				<button id="btnsend" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-1 px-3 border-b-4 border-blue-700" style="outline: none">
-					<i class="fa fa-paper-plane" class="pb-1 outline-none h-12 w-full mx-auto" aria-hidden="true"></i>
-				</button>
-			</div>`
-		);
 		$('#form').show();
 		$('#chatapp').hide();
 	});
@@ -204,7 +180,6 @@ function sidebarUpdate(userName, roomFromArray) {
 	sideDiv.innerHTML = markupsidebar;
 	headbox.insertBefore(sideDiv, headbox.firstChild);
 
-	console.log(headbox);
 }
 
 function updateNewUser(newusername, roomName) {
@@ -221,6 +196,6 @@ function updateNewUser(newusername, roomName) {
 }
 
 socket.on('updatenewuser', (msg) => {
-	console.log('useruphjvhjbjhbjh', msg);
+	
 	updateNewUser(msg.roomUser, msg.current);
 });
