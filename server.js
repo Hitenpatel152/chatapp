@@ -7,7 +7,7 @@ const http = require('http').createServer(app);
 const PORT = process.env.PORT || 3000;
 
 http.listen(PORT, () => {
-	console.log(`listen on ${PORT}`);
+	console.log(`Server listening on ${PORT}...`);
 });
 
 app.use(express.static(__dirname + '/public'));
@@ -36,7 +36,7 @@ io.on('connection', (socket) => {
 		io.to(user.room).emit('updatenewuser', { roomUser: roomUser(user.room), current: getCurrentUser(socket.id) });
 
 		//welcome current user...
-		socket.emit('message', { msgData: 'Welcome in ChatApp!!', time: moment().format('h:mm a') });
+		socket.emit('message', { msgData: 'Welcome in Awasome ChatApp!!', time: moment().format('h:mm a') });
 
 		//broadcast msg..
 		socket.broadcast.to(user.room).emit('message', { msgData: `${user.userName} has joined the chat`, time: moment().format('h:mm a') });
@@ -59,7 +59,7 @@ io.on('connection', (socket) => {
 			//to user room for update list
 			socket.broadcast.to(user.room).emit('updatenewuser', { roomUser: roomUser(user.room), current: { room: user.room } });
 
-			socket.broadcast.to(user.room).emit('message', { msgData: `${user.userName} has left the chat`, time: moment().format('h:mm a') });
+			socket.broadcast.to(user.room).emit('message', { msgData: `${user.userName} has left the chat...`, time: moment().format('h:mm a') });
 		}
 	});
 });
